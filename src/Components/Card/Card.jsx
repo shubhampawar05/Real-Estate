@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { CiHeart } from "react-icons/ci";
 import { LuBedSingle } from "react-icons/lu";
 import { TbBath } from "react-icons/tb";
 import { TbDimensions } from "react-icons/tb";
+import { LikedContext } from '../../context/LikedContext';
 
 const Card = ( {item}) => {
     // console.log(item);
     const { id , city ,price ,houseName, numberOfBaths,numberOfBeds , date ,propertyType , address,image} = item;
-    {}
+    const { liked, toggleLiked } = useContext(LikedContext);
+    const isLiked = liked.some(item => item.id === id);
+    
   return (
     <div>
         <div className='w-[270px] p-2 border '>
@@ -18,8 +21,8 @@ const Card = ( {item}) => {
                 <div className='p-2'>
                     <div className='flex justify-between'>
                         <div className=' '><span className='text-violet-700 text-xl font-semibold'>{`$${price}`}</span> <span className='text-sm'>/Month</span></div>
-                        <div className='border border-black flex justify-center items-center w-[30px] h-[30px] rounded-full'>
-                            <CiHeart/>
+                        <div className='border border-black flex justify-center items-center w-[30px] h-[30px] rounded-full' onClick={() => toggleLiked(item)}>
+                            <CiHeart className={isLiked ? 'text-red-500' : ''} />
                         </div>
                     </div>
                     <p className=' font-bold text-xl'>{houseName.slice(0,25)}</p>

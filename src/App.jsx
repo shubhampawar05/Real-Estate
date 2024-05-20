@@ -3,12 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import MainPage from './pages/MainPage'
 import LikedPage from './pages/LikedPage';
-
+import { LikedProvider } from './context/LikedContext';
 function App() {
   
 
   return (
     <>
+    <LikedProvider>
+      
    <BrowserRouter>
     <Routes>
       <Route path='/' element={<MainPage/>} />
@@ -17,6 +19,7 @@ function App() {
     
     </Routes>
    </BrowserRouter>
+    </LikedProvider>
     </>
   )
 }
